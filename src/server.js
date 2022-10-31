@@ -8,6 +8,7 @@ const upload = require("../utils/multer");
 // const upload = multer();
 // const authRoutes = require("./routes/auth");
 const adminRoutes = require("../routes/adminRoutes");
+const menuRoutes = require("../routes/menuRoutes");
 // const cloudinary = require("../utils/cloudinary");
 // const schoolRoutes = require("./routes/school");
 // const studentRoutes = require("./routes/student");
@@ -16,7 +17,8 @@ env.config();
 
 mongoose
   .connect(
-    `mongodb+srv://${ process.env.DB_USER }:${ process.env.DB_PASSWORD }@cluster0.uo7o9f7.mongodb.net/${ process.env.DB_DATABASE }?retryWrites=true&w=majority`,
+    // `mongodb+srv://${ process.env.DB_USER }:${ process.env.DB_PASSWORD }@cluster0.uo7o9f7.mongodb.net/${ process.env.DB_DATABASE }?retryWrites=true&w=majority`,
+    `mongodb://localhost:27017/meal`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true
@@ -30,6 +32,7 @@ app.use(cors());
 app.use(express.json());
 // app.use("/api", authRoutes);
 app.use("/api", adminRoutes);
+app.use("/api", menuRoutes);
 app.get("/upload", upload.single("image"),  async(req, res)=>{
   try {
     const result = await cloudinary.uploader.upload(req.file.path);
