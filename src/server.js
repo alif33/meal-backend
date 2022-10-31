@@ -17,8 +17,8 @@ env.config();
 
 mongoose
   .connect(
-    // `mongodb+srv://${ process.env.DB_USER }:${ process.env.DB_PASSWORD }@cluster0.uo7o9f7.mongodb.net/${ process.env.DB_DATABASE }?retryWrites=true&w=majority`,
-    `mongodb://localhost:27017/meal`,
+    `mongodb+srv://${ process.env.DB_USER }:${ process.env.DB_PASSWORD }@cluster0.uo7o9f7.mongodb.net/${ process.env.DB_DATABASE }?retryWrites=true&w=majority`,
+    // `mongodb://localhost:27017/meal`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true
