@@ -8,6 +8,27 @@ exports.getCategories = async(req, res) => {
     res.status(200).json(categories.reverse());
 };
 
+exports.Deletation = async(req, res) => {
+    const { _ids } = req.body;
+    const _length = _ids.length - 1;
+  
+    _ids.forEach(async (_id, _index)=>{
+      const _category = await Category.findByIdAndDelete({_id});
+      if(_category){
+          const __length = _category.products.length - 1;
+          _category.products.forEach(async(product, __index)=>{
+              const _product = await Product.findByIdAndDelete({_id: product});
+              if(_index === _length && __index === __length){
+                  res.send({
+                      success: true,
+                      message: "Deleted successfully"
+                  })
+              }
+          })
+      }
+    })
+};
+
 exports.Importer = async(req, res) => {
     const {  
         menu, 
