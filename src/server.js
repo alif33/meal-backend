@@ -8,6 +8,7 @@ const upload = require("../utils/multer");
 // const upload = multer();
 // const authRoutes = require("./routes/auth");
 const adminRoutes = require("../routes/adminRoutes");
+const resturantRoutes = require("../routes/resturantRoutes");
 const menuRoutes = require("../routes/menuRoutes");
 // const cloudinary = require("../utils/cloudinary");
 // const schoolRoutes = require("./routes/school");
@@ -32,6 +33,7 @@ app.use(cors());
 app.use(express.json());
 // app.use("/api", authRoutes);
 app.use("/api", adminRoutes);
+app.use("/api", resturantRoutes);
 app.use("/api", menuRoutes);
 app.get("/upload", upload.single("image"),  async(req, res)=>{
   try {
