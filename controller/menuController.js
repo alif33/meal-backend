@@ -17,7 +17,7 @@ exports.Deletation = async(req, res) => {
       if(_category){
           const __length = _category.products.length - 1;
           _category.products.forEach(async(product, __index)=>{
-              const _product = await Product.findByIdAndDelete({_id: product});
+              await Product.findByIdAndDelete({_id: product});
               if(_index === _length && __index === __length){
                   res.send({
                       success: true,
